@@ -1,5 +1,3 @@
-import dao.FileToStr;
-import factories.BikeFactory;
 import vue.FrmMain;
 
 public class Main {

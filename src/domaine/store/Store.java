@@ -1,24 +1,31 @@
 package domaine.store;
 
-import domaine.bike.Bike;
-import domaine.price.Margin;
+import domaine.bike.Priceable;
 import domaine.price.PriceCalculator;
-import domaine.price.VATRate;
-import metier.Catalogue;
 
 import java.util.List;
 
-public class Store {
-    Catalogue<Bike> bikes;
+public abstract class Store<T extends Priceable> {
+    String name;
+    List<T> products;
     PriceCalculator pc;
 
-
-    public Store(List<Bike> bikes) {
-        this.bikes = (Catalogue<Bike>) bikes;
+    public Store(String name, List<T> products, PriceCalculator pc ) {
+        this.products = products;
+        this.pc = pc;
+        this.name = name;
     }
 
-    public void displayPriceList(){
-        this.bikes.displayPriceList();
+    public String displayCatalogWithPriceList(){
+        String output = "Catalog of " + this.toString() + " (applying VAT = " + pc.getVat() + "% and " + pc.getMargin() +"%)\n";
+        for (T p : products) {
+            output += "- " + p.toString() + " => " +pc.getAdjustedPrice(p.getPrice()) + ".-\n";
+        }
+        return output;
     };
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

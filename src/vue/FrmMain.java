@@ -2,7 +2,9 @@ package vue;
 
 import dao.BikeDao;
 import domaine.bike.Bike;
-import domaine.store.Store;
+import domaine.price.PriceCalculator;
+import domaine.store.*;
+import factories.Company;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class FrmMain extends JFrame {
+
     private JPanel panel;
     private JButton btnCatalogue;
     private JRadioButton rbBikeImportGeneve;
@@ -18,28 +21,40 @@ public class FrmMain extends JFrame {
     private ButtonGroup grpMagasin = new ButtonGroup();
 
     public FrmMain() {
-        setType(Type.UTILITY); setContentPane(panel); setTitle("Catalogue vélo"); pack();
-        setLocationRelativeTo(null); setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        grpMagasin.add(rbBikeImportGeneve); grpMagasin.add(rbBikeShopGeneve); grpMagasin.add(rbBikeShopAnnemasse);
+        setType(Type.UTILITY);
+        setContentPane(panel);
+        setTitle("Catalogue vélo");
+        pack();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        grpMagasin.add(rbBikeImportGeneve);
+        grpMagasin.add(rbBikeShopGeneve);
+        grpMagasin.add(rbBikeShopAnnemasse);
 
         btnCatalogue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Store store = null;
+                PriceCalculator pc = null;
                 List<Bike> velos = BikeDao.getBikeList();
 
-                /*"switch (grpMagasin.getSelection().getActionCommand()) {
+                switch (grpMagasin.getSelection().getActionCommand()) {
                     case "BikeImportGeneve":
-                        store = new Store(velos); break;
+                        pc = Company.createPriceCalculator(Location.SWITZERLAND, StoreType.WHOLESALER);
+                        store = Company.createStore(ProductType.BIKE,"BikeImportGeneve", velos, pc);
+                        break;
 
                     case "BikeShopGeneve":
-                        store = new Store(velos);
+                        pc = Company.createPriceCalculator(Location.SWITZERLAND, StoreType.RESELLER);
+                        store = Company.createStore(ProductType.BIKE,"BikeShopGeneve", velos, pc);
                         break;
+
                     case "BikeShopAnnemasse":
-                        store = new Store(velos);
+                        pc = Company.createPriceCalculator(Location.FRANCE, StoreType.WHOLESALER);
+                        store = Company.createStore(ProductType.BIKE,"BikeShopAnnemasse", velos, pc);
                         break;
                 }
-                new Catalogue().afficherListePrix(magasin);*/
+                System.out.println(store.displayCatalogWithPriceList());
             }
         });
     }

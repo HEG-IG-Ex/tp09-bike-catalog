@@ -2,14 +2,13 @@ package dao;
 
 import domaine.bike.BikeType;
 import domaine.bike.Bike;
-import factories.BikeFactory;
+import factories.Company;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BikeDao {
     private static final String FILENAME = "ListeVelos.csv";
-    private static final BikeFactory bf = null;
 
     public static List<Bike> getBikeList() {
         String[][] velos = FileToStr.lireCsv(FILENAME);
@@ -21,7 +20,7 @@ public class BikeDao {
             String modele = velo[2];
             int prix = Integer.parseInt(velo[3]);
             String rouesOuCadre = velo[4];
-            aLst.add(bf.getInstance().createBike(type, marque, modele, prix, rouesOuCadre));
+            aLst.add(Company.createBike(type, marque, modele, prix, rouesOuCadre));
         }
         return aLst;
     }

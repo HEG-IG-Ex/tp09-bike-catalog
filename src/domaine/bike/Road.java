@@ -6,5 +6,4 @@ public class Road extends Bike {
         super(marque, modele, prix);
         this.roues = roues;
     }
-
 }

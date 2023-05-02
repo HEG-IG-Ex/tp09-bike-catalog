@@ -1,14 +1,9 @@
 package dao;
 
-import domaine.BikeType;
-import domaine.Road;
-import domaine.VTT;
-import domaine.Bike;
+import domaine.bike.BikeType;
+import domaine.bike.Bike;
 import factories.BikeFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package factories;
 
-import domaine.Bike;
-import domaine.BikeType;
-import domaine.Road;
-import domaine.VTT;
+import domaine.bike.Bike;
+import domaine.bike.BikeType;
+import domaine.bike.Road;
+import domaine.bike.VTT;
 
 public class BikeFactory {
     private BikeFactory instance;

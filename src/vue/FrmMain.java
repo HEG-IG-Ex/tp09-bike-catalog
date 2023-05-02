@@ -1,9 +1,8 @@
 package vue;
 
 import dao.BikeDao;
-import domaine.Bike;
-import domaine.Store;
-import metier.Catalogue;
+import domaine.bike.Bike;
+import domaine.store.Store;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

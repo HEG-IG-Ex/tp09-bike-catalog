@@ -1,4 +1,4 @@
-package domaine;
+package domaine.bike;
 
 
 public class VTT extends Bike {

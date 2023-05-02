@@ -1,4 +1,4 @@
-package domaine;
+package domaine.bike;
 
 public class Road extends Bike {
     private String roues;

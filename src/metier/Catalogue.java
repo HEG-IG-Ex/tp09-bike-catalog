@@ -1,11 +1,17 @@
 package metier;
 
-import dao.BikeDao;
-import domaine.Bike;
+import domaine.bike.Bike;
+import java.util.ArrayList;
 
-public class Catalogue {
-    public void afficherListePrix(String magasin) {
-        System.out.println("Liste de prix " + magasin + " :");
-        for (Bike bike : BikeDao.listeVelos()) { System.out.println(bike); }
+
+public class Catalogue<T extends Bike> extends ArrayList<T> {
+    @Override
+    public String toString() {
+        String output;
+        output = "Pricelist of the catalog is :";
+        for (Bike b : this) {
+            output += b.toString() + "\n";
+        }
+        return output;
     }
 }
